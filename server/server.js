@@ -23,13 +23,16 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
   try {
-    const prompt = req.body.prompt;
+    const prompt =
+      req.body.prompt +
+      'You are going to act like a programming generator. You can only answer with code snippets.If it is not possible to answer with some code snippets then print "I am sorry but I can not anwser this question" ';
+    // ' if the expression is not related to programming answer "I am sorry but I can only anwser questions related to programming"';
 
     const response = await openai.createCompletion({
       model: 'text-davinci-003',
       prompt: `${prompt}`,
       temperature: 0,
-      max_tokens: 3000,
+      max_tokens: 4000,
       top_p: 1,
       frequency_penalty: 0.5,
       presence_penalty: 0,

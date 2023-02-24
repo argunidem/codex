@@ -27,6 +27,7 @@ function typeText(element, text) {
       index++;
     } else {
       clearInterval(interval);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   }, 20);
 }
@@ -73,7 +74,8 @@ const handleSubmit = async (e) => {
   loader(messageDiv);
 
   // fetch data from server => bot's response
-  const response = await fetch('https://codex-6kcs.onrender.com/', {
+  // const response = await fetch('https://codex-6kcs.onrender.com/', {
+  const response = await fetch('http://localhost:5000', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
